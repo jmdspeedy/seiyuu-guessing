@@ -1,0 +1,234 @@
+/* General Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background: linear-gradient(to bottom, #ffc0cb, #fff5e1);
+  color: #ff7f50;
+}
+
+/* Welcome Page */
+h1 {
+  font-size: 2.5em;
+  margin-top: 50px;
+}
+
+button {
+  background-color: #ff7f50;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  margin: 10px;
+  font-size: 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Game Section */
+.hidden {
+  opacity: 0;
+  filter: blur(10px);
+  transition: all 1s;
+}
+.show {
+  filter: blur(0px);
+  opacity: 1;
+}
+
+section {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 100vh;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.option {
+  background-color: #ff7f50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.option:hover {
+  background-color: #ff4500;
+  transform: scale(1.2);
+}
+
+/* Modal Styles */
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+}
+
+.modal-content p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+#modal.hidden {
+  display: none;
+}
+
+/* Button States */
+.option.correct {
+  background-color: #4caf50 !important; /* Green */
+  transform: scale(1.2);
+}
+
+.option.incorrect {
+  background-color: #f44336 !important; /* Red */
+  transform: scale(1.2);
+}
+
+body.lock-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Settings Modal Styles */
+.settings {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden; /* Initially hidden */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.settings.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal-footer {
+  margin-top: 20px;
+}
+
+button {
+  padding: 8px 16px;
+  margin: 5px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Switch Style for Question Options */
+#questionSwitch {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.switch-option {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 16px;
+}
+
+.switch-option.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.switch-option:hover {
+  background-color: #d3d3d3;
+}
+
+/* Modal Footer */
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+button#saveSettingsButton {
+  background-color: #28a745;
+}
+
+button#saveSettingsButton:hover {
+  background-color: #218838;
+}
+
+button#closeSettingsButton {
+  background-color: #dc3545;
+}
+
+button#closeSettingsButton:hover {
+  background-color: #c82333;
+}
+
+.game-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#questionCounter {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+}

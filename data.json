@@ -1,0 +1,18 @@
+{
+    "voiceActors": [
+      { "id": 1, "name": "Oonishi Saori" },
+      { "id": 2, "name": "Minsae Inori" },
+      { "id": 3, "name": "Iwami Manaka" },
+      { "id": 4, "name": "Youmiya Hina" },
+      { "id": 5, "name": "Kohara Konomi" }
+    ],
+
+    "voiceClips": [
+      { "id": 1, "file": "onishi_saori_1.mp3", "actorId": 1 },
+      { "id": 2, "file": "minase_inori_1.mp3", "actorId": 2 },
+      { "id": 3, "file": "iwami_manaka_1.mp3", "actorId": 3 },
+      { "id": 4, "file": "youmiya_hina_1.mp3", "actorId": 4 },
+      { "id": 5, "file": "kohara_konomi_1.mp3", "actorId": 5 }
+    ]
+  }
+  

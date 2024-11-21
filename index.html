@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Honoka Voice Actor Guessing Game</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section id="welcome" class="hidden">
+      <h1>🎤 Welcome to Honoka's Voice Actor Quiz!</h1>
+      <div class="container">
+        <button id="playButton">🎮 Play</button>
+      </div>
+    </section>
+
+    <section id="game" class="hidden">
+      <div class="game-header">
+        <h2 id="questionCounter">Question 1 / 10</h2>
+      </div>
+      <div class="audio-container">
+        <audio id="audio" controls></audio>
+      </div>
+      <div class="options"></div>
+      <div id="modal" class="modal hidden">
+        <div class="modal-content">
+          <p id="modal-text"></p>
+          <button id="nextButton">Next Question</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal for showing the correct answer -->
+    <div id="modal" class="hidden">
+      <div class="modal-content">
+        <p id="modal-text"></p>
+        <button id="nextButton">Next Question</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
