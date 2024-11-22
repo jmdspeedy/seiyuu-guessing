@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Honoka Voice Actor Guessing Game</title>
+    <title>Voice Actor Guessing Game</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
       rel="stylesheet"
@@ -11,10 +11,22 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <section id="welcome" class="hidden">
-      <h1>🎤 Welcome to Honoka's Voice Actor Quiz!</h1>
-      <div class="container">
-        <button id="playButton">🎮 Play</button>
+    <section id="welcome">
+      <div class="welcome-content">
+        <h1>Welcome to Suzu's Voice Actor Guessing Game!</h1>
+
+        <div class="rules">
+          <h2>How to Play:</h2>
+          <p>You'll hear a voice clip from a voice actor.</p>
+          <p>
+            Your goal is to guess the correct voice actor from four options.
+          </p>
+          <p>You have 10 questions to answer in each game.</p>
+          <p>Challenge yourself to get a perfect score!</p>
+        </div>
+        <div class="welcome-buttons">
+          <button id="playButton">Play</button>
+        </div>
       </div>
     </section>
 
@@ -34,11 +46,11 @@
       </div>
     </section>
 
-    <!-- Modal for showing the correct answer -->
-    <div id="modal" class="hidden">
+    <!-- Game-Over Modal -->
+    <div id="gameOverModal" class="hidden">
       <div class="modal-content">
-        <p id="modal-text"></p>
-        <button id="nextButton">Next Question</button>
+        <p id="finalScore"></p>
+        <button id="playAgainButton">Play Again</button>
       </div>
     </div>
 

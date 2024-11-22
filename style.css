@@ -110,6 +110,8 @@ section {
   display: none;
 }
 
+
+
 /* Button States */
 .option.correct {
   background-color: #4caf50 !important; /* Green */
@@ -126,26 +128,6 @@ body.lock-scroll {
   height: 100vh;
 }
 
-/* Settings Modal Styles */
-.settings {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden; /* Initially hidden */
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.settings.show {
-  visibility: visible;
-  opacity: 1;
-}
 
 .modal-content {
   background: white;
@@ -160,8 +142,8 @@ body.lock-scroll {
 }
 
 button {
-  padding: 8px 16px;
-  margin: 5px;
+  padding: 16px 32px;
+  margin: 20px;
   border: none;
   background-color: #007bff;
   color: white;
@@ -172,54 +154,11 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* Switch Style for Question Options */
-#questionSwitch {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.switch-option {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  padding: 10px 20px;
-  border-radius: 20px;
-  margin: 0 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  font-size: 16px;
-}
-
-.switch-option.active {
-  background-color: #007bff;
-  color: white;
-}
-
-.switch-option:hover {
-  background-color: #d3d3d3;
-}
-
 /* Modal Footer */
 .modal-footer {
   display: flex;
   justify-content: center;
   gap: 10px;
-}
-
-button#saveSettingsButton {
-  background-color: #28a745;
-}
-
-button#saveSettingsButton:hover {
-  background-color: #218838;
-}
-
-button#closeSettingsButton {
-  background-color: #dc3545;
-}
-
-button#closeSettingsButton:hover {
-  background-color: #c82333;
 }
 
 .game-header {
@@ -232,3 +171,53 @@ button#closeSettingsButton:hover {
   color: #333;
   font-weight: bold;
 }
+
+#welcome .rules {
+  margin: 50px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.3); 
+  border-radius: 15px;
+  text-align: left; /* Align text to the left */
+  font-size: 1em; /* Readable text size */
+  line-height: 1.5; /* Add spacing between lines */
+}
+
+/* Game Over Modal */
+#gameOverModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  color: #000;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#gameOverModal .modal-content {
+  margin: 10px 0;
+}
+
+#playAgainButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+#playAgainButton:hover {
+  background-color: #0056b3;
+}
+
+#gameOverModal.hidden {
+  display: none;
+}
+
+

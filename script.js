@@ -4,10 +4,10 @@ const observer = new IntersectionObserver((entries) => {
     console.log(entry);
     if (entry.isIntersecting) {
       entry.target.classList.add("show");
-      console.log("added hidden");
+      console.log("added show");
     } else {
       entry.target.classList.remove("show");
-      console.log("added show");
+      console.log("added hidden");
     }
   });
 });
@@ -15,11 +15,6 @@ const observer = new IntersectionObserver((entries) => {
 const hiddenElements = document.querySelectorAll(".hidden");
 hiddenElements.forEach((element) => observer.observe(element));
 
-// Event Listeners
-document.getElementById("playButton").addEventListener("click", () => {
-  document.querySelector("#game").classList.remove("hidden");
-  gsap.to(window, { scrollTo: "#game", duration: 1 });
-});
 
 // Load JSON Data
 async function loadGameData() {
@@ -53,7 +48,7 @@ function generateQuestion(data) {
 }
 
 // Render Question
-function renderQuestion(question, data, questionList, currentIndex) {
+function renderQuestion(question, data, questionList, currentIndex, correct) {
   const audioElement = document.querySelector("#audio");
   const optionsContainer = document.querySelector(".options");
   const questionCounter = document.querySelector("#questionCounter");
@@ -77,6 +72,7 @@ function renderQuestion(question, data, questionList, currentIndex) {
       // Mark the correct and incorrect answers
       if (actor.id === question.correctActor.id) {
         button.classList.add("correct");
+        correct += 1
       } else {
         button.classList.add("incorrect");
       }
@@ -106,14 +102,31 @@ function renderQuestion(question, data, questionList, currentIndex) {
         questionList[currentIndex],
         data,
         questionList,
-        currentIndex + 1
+        currentIndex + 1,
+        correct
       );
     } else {
       // Game is finished
-      alert("Game Over! Thank you for playing.");
-      document.querySelector("#game").classList.add("hidden");
-      localStorage.removeItem("gameStarted"); // Reset game state
-      document.body.classList.add("lock-scroll");
+      const GOmodal = document.querySelector("#gameOverModal");
+      const scoreText = document.querySelector("#finalScore");
+
+      // Display the final score
+      if (correct == 10) {
+        scoreText.innerHTML = `You scored 10 / ${totalQuestions}!!<br><img src="assets/10.gif" style="width: 150px; height: auto; margin-top: 10px;">`;
+      } else {
+        scoreText.textContent = `You scored ${correct} / ${totalQuestions}!`;
+      }
+      // Show the modal
+      GOmodal.classList.remove("hidden");
+
+      // Add event listener for "Play Again" button
+      document.querySelector("#playAgainButton").onclick = () => {
+        GOmodal.classList.add("hidden");
+        localStorage.removeItem("gameStarted"); // Reset game state
+        document.body.classList.add("lock-scroll");
+        document.querySelector("#game").classList.add("hidden"); // Hide game section
+        initializeGame(); // Start a new game
+      };
     }
   };
 }
@@ -131,7 +144,7 @@ async function initializeGame() {
   }
 
   // Start rendering the first question
-  renderQuestion(questionList[0], data, questionList, 1);
+  renderQuestion(questionList[0], data, questionList, 1, 0);
 }
 
 // Event Listener for Play Button
