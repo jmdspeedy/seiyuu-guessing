@@ -1,18 +1,65 @@
 {
-    "voiceActors": [
-      { "id": 1, "name": "Oonishi Saori" },
-      { "id": 2, "name": "Minase Inori" },
-      { "id": 3, "name": "Iwami Manaka" },
-      { "id": 4, "name": "Youmiya Hina" },
-      { "id": 5, "name": "Kohara Konomi" }
-    ],
-
-    "voiceClips": [
-      { "id": 1, "file": "onishi_saori_1.mp3", "actorId": 1 },
-      { "id": 2, "file": "minase_inori_1.mp3", "actorId": 2 },
-      { "id": 3, "file": "iwami_manaka_1.mp3", "actorId": 3 },
-      { "id": 4, "file": "youmiya_hina_1.mp3", "actorId": 4 },
-      { "id": 5, "file": "kohara_konomi_1.mp3", "actorId": 5 }
-    ]
-  }
-  
+  "voiceActors": [
+    {
+      "id": 1,
+      "name": "Iwami Manaka"
+    },
+    {
+      "id": 2,
+      "name": "Kohara Konomi"
+    },
+    {
+      "id": 3,
+      "name": "Minase Inori"
+    },
+    {
+      "id": 4,
+      "name": "Onishi Saori"
+    },
+    {
+      "id": 5,
+      "name": "Youmiya Hina"
+    },
+    {
+      "id": 6,
+      "name": "Taketatsu Ayana"
+    }
+  ],
+  "voiceClips": [
+    {
+      "id": 1,
+      "file": "iwami_manaka_1.mp3",
+      "actorId": 1
+    },
+    {
+      "id": 2,
+      "file": "kohara_konomi_1.mp3",
+      "actorId": 2
+    },
+    {
+      "id": 3,
+      "file": "minase_inori_1.mp3",
+      "actorId": 3
+    },
+    {
+      "id": 4,
+      "file": "onishi_saori_1.mp3",
+      "actorId": 4
+    },
+    {
+      "id": 5,
+      "file": "youmiya_hina_1.mp3",
+      "actorId": 5
+    },
+    {
+      "id": 6,
+      "file": "taketatsu_ayana_1.mp3",
+      "actorId": 6
+    },
+    {
+      "id": 7,
+      "file": "taketatsu_ayana_2.mp3",
+      "actorId": 6
+    }
+  ]
+}

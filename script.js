@@ -15,7 +15,6 @@ const observer = new IntersectionObserver((entries) => {
 const hiddenElements = document.querySelectorAll(".hidden");
 hiddenElements.forEach((element) => observer.observe(element));
 
-
 // Load JSON Data
 async function loadGameData() {
   const response = await fetch("data.json");
@@ -39,7 +38,6 @@ function generateQuestion(data) {
     .sort(() => 0.5 - Math.random())
     .slice(0, 3);
 
-  // Combine correct answer with distractors and shuffle
   const options = [...distractors, correctActor].sort(
     () => 0.5 - Math.random()
   );
@@ -72,7 +70,7 @@ function renderQuestion(question, data, questionList, currentIndex, correct) {
       // Mark the correct and incorrect answers
       if (actor.id === question.correctActor.id) {
         button.classList.add("correct");
-        correct += 1
+        correct += 1;
       } else {
         button.classList.add("incorrect");
       }
@@ -82,6 +80,12 @@ function renderQuestion(question, data, questionList, currentIndex, correct) {
       const modalText = document.querySelector("#modal-text");
       modalText.innerHTML = `The correct answer is:<br><span style="color: black; font-weight: bold;">${question.correctActor.name}</span><br><img src="assets/${question.correctActor.id}.jpg" alt="${question.correctActor.name}" style="width: 150px; height: auto; margin-top: 10px;">`;
       modal.classList.remove("hidden");
+
+      // Set audio volume to 0
+      const audioElement = document.querySelector("#audio");
+      if (audioElement) {
+        audioElement.volume = 0;
+      }
 
       // Disable all buttons
       document.querySelectorAll(".option").forEach((btn) => {
@@ -105,6 +109,11 @@ function renderQuestion(question, data, questionList, currentIndex, correct) {
         currentIndex + 1,
         correct
       );
+      // Set audio volume to 50% again
+      const audioElement = document.querySelector("#audio");
+      if (audioElement) {
+        audioElement.volume = 0.5;
+      }
     } else {
       // Game is finished
       const GOmodal = document.querySelector("#gameOverModal");
@@ -125,7 +134,7 @@ function renderQuestion(question, data, questionList, currentIndex, correct) {
         localStorage.removeItem("gameStarted"); // Reset game state
         document.body.classList.add("lock-scroll");
         document.querySelector("#game").classList.add("hidden"); // Hide game section
-        initializeGame(); // Start a new game
+        initializeGame();
       };
     }
   };
@@ -134,17 +143,31 @@ function renderQuestion(question, data, questionList, currentIndex, correct) {
 // Initialize Game
 async function initializeGame() {
   const data = await loadGameData();
-  const totalQuestions = 10; // Fixed number of questions
+  const totalQuestions = 10;
   let questionList = [];
 
-  // Generate multiple questions based on the fixed number
   for (let i = 0; i < totalQuestions; i++) {
+    let dup = false;
     const question = generateQuestion(data);
+    // Check for duplicate
+    questionList.forEach((q, index) => {
+      if (q.correctClip == question.correctClip) {
+        dup = true;
+      }
+    });
+    if (dup == true) {
+      console.log("dup ques");
+    }
     questionList.push(question);
   }
 
-  // Start rendering the first question
   renderQuestion(questionList[0], data, questionList, 1, 0);
+
+  // Set audio volume to 50% by default
+  const audioElement = document.querySelector("#audio");
+  if (audioElement) {
+    audioElement.volume = 0.5; // Set volume to 50%
+  }
 }
 
 // Event Listener for Play Button
