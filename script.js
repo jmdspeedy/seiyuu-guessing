@@ -15,6 +15,19 @@ const observer = new IntersectionObserver((entries) => {
 const hiddenElements = document.querySelectorAll(".hidden");
 hiddenElements.forEach((element) => observer.observe(element));
 
+// Scroll to top
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("lock-scroll");
+  const welcomeSection = document.querySelector("#welcome");
+  if (welcomeSection) {
+    window.scrollTo({
+      top: welcomeSection.offsetTop,
+      behavior: "smooth",
+    });
+  }
+});
+
+
 // Load JSON Data
 async function loadGameData() {
   const response = await fetch("data.json");
@@ -182,4 +195,5 @@ document.getElementById("playButton").addEventListener("click", () => {
 
   // Initialize the game
   initializeGame();
+  document.body.classList.add("lock-scroll");
 });
