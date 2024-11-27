@@ -2,27 +2,52 @@
   "voiceActors": [
     {
       "id": 1,
-      "name": { "en": "Iwami Manaka", "zh": "石见舞菜香" }
+      "name": {
+        "en": "Iwami Manaka",
+        "zh": "石见舞菜香"
+      }
     },
     {
       "id": 2,
-      "name": { "en": "Kohara Konomi", "zh": "小原好美" }
+      "name": {
+        "en": "Kohara Konomi",
+        "zh": "小原好美"
+      }
     },
     {
       "id": 3,
-      "name": { "en": "Minase Inori", "zh": "水濑祈" }
+      "name": {
+        "en": "Minase Inori",
+        "zh": "水濑祈"
+      }
     },
     {
       "id": 4,
-      "name": { "en": "Onishi Saori", "zh": "大西沙织" }
+      "name": {
+        "en": "Onishi Saori",
+        "zh": "大西沙织"
+      }
     },
     {
       "id": 5,
-      "name": { "en": "Youmiya Hina", "zh": "羊宫妃那" }
+      "name": {
+        "en": "Youmiya Hina",
+        "zh": "羊宫妃那"
+      }
     },
     {
       "id": 6,
-      "name": { "en": "Taketatsu Ayana", "zh": "竹达彩奈" }
+      "name": {
+        "en": "Taketatsu Ayana",
+        "zh": "竹达彩奈"
+      }
+    },
+    {
+      "id": 7,
+      "name": {
+        "en": "Tono Hikaru",
+        "zh": "远野光"
+      }
     }
   ],
   "voiceClips": [
@@ -60,6 +85,11 @@
       "id": 7,
       "file": "taketatsu_ayana_2.mp3",
       "actorId": 6
+    },
+    {
+      "id": 8,
+      "file": "tono_hikaru_1.mp3",
+      "actorId": 7
     }
   ]
 }

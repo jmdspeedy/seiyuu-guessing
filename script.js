@@ -61,13 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
 // Scorll Animation
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    console.log(entry);
     if (entry.isIntersecting) {
       entry.target.classList.add("show");
-      console.log("added show");
+      entry.target.classList.remove("hidden");
     } else {
       entry.target.classList.remove("show");
-      console.log("added hidden");
+      entry.target.classList.add("hidden");
     }
   });
 });
@@ -84,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
       behavior: "smooth",
     });
   }
+  console.log("scroll back to top")
   document.body.classList.add("lock-scroll");
 });
 
@@ -168,9 +168,9 @@ function renderQuestion(question, data, questionList, currentIndex, correct) {
       const modal = document.querySelector("#modal");
       const modalText = document.querySelector("#modal-text");
       if (currentLang == "en") {
-        modalText.innerHTML = `The correct answer is:<br><span style="font-weight: bold; color: #333;">${question.correctActor.name}</span><br><img src="assets/${question.correctActor.id}.jpg" alt="${question.correctActor.name}" style="width: 150px; height: auto; margin-top: 10px;">`;
+        modalText.innerHTML = `The correct answer is:<br><span style="font-weight: bold;">${question.correctActor.name}</span><br><img src="assets/${question.correctActor.id}.jpg" alt="${question.correctActor.name}" style="width: 150px; height: auto; margin-top: 10px;">`;
       } else if (currentLang == "zh") {
-        modalText.innerHTML = `正确答案是:<br><span style="font-weight: bold; color: #333;">${question.correctActor.name}</span><br><img src="assets/${question.correctActor.id}.jpg" alt="${question.correctActor.name}" style="width: 150px; height: auto; margin-top: 10px;">`;
+        modalText.innerHTML = `正确答案是:<br><span style="font-weight: bold;">${question.correctActor.name}</span><br><img src="assets/${question.correctActor.id}.jpg" alt="${question.correctActor.name}" style="width: 150px; height: auto; margin-top: 10px;">`;
       }
       modal.classList.remove("hidden");
 
@@ -214,7 +214,7 @@ function renderQuestion(question, data, questionList, currentIndex, correct) {
 
       // Display the final score
       if (correct == 10) {
-        scoreText.innerHTML = `You scored 10 / ${totalQuestions}!!<br><img src="assets/10.gif" style="width: 150px; height: auto; margin-top: 10px;">`;
+        scoreText.innerHTML = `10 / 10 PERFECT!!<br><img src="assets/10.gif" style="width: 150px; height: auto; margin-top: 10px;">`;
       } else {
         scoreText.textContent = `You scored ${correct} / ${totalQuestions}!`;
       }

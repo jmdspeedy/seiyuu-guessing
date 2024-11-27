@@ -33,8 +33,11 @@ def update_data():
     voice_actors = data["voiceActors"]
     voice_clips = data["voiceClips"]
 
-    # Build a map of actor names to IDs for quick lookup
-    actor_name_to_id = {actor["name"]: actor["id"] for actor in voice_actors}
+    # Build a map of actor names (in English) to IDs for quick lookup
+    actor_name_to_id = {
+        actor["name"]["en"]: actor["id"]
+        for actor in voice_actors
+    }
 
     # Start scanning the directory
     for filename in os.listdir(ASSETS_DIR):
@@ -44,14 +47,24 @@ def update_data():
                 # Check if the actor exists, add if not
                 if actor_name not in actor_name_to_id:
                     new_actor_id = max([actor["id"] for actor in voice_actors], default=0) + 1
-                    voice_actors.append({"id": new_actor_id, "name": actor_name})
+                    voice_actors.append({
+                        "id": new_actor_id,
+                        "name": {
+                            "en": actor_name,
+                            "zh": "需要填"  # Placeholder for other languages
+                        }
+                    })
                     actor_name_to_id[actor_name] = new_actor_id
 
                 # Check if the clip already exists, add if not
                 actor_id = actor_name_to_id[actor_name]
                 if not any(clip["file"] == filename for clip in voice_clips):
                     new_clip_id = max([clip["id"] for clip in voice_clips], default=0) + 1
-                    voice_clips.append({"id": new_clip_id, "file": filename, "actorId": actor_id})
+                    voice_clips.append({
+                        "id": new_clip_id,
+                        "file": filename,
+                        "actorId": actor_id
+                    })
 
     # Save updated data
     save_data(data)
