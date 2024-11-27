@@ -1,3 +1,63 @@
+let currentLang = localStorage.getItem("language") || "en";
+switchLanguage(currentLang);
+
+async function loadLocalizationData(lang) {
+  try {
+    // Fetch the localization data
+    const response = await fetch(`${lang}.json`);
+    const localizationData = await response.json();
+
+    // Update text content on the page
+    document.querySelector("h1").textContent = localizationData.welcome;
+    document.querySelector(".rules").innerHTML = `
+      <h2>${localizationData.howToPlay}</h2>
+      ${localizationData.rules.map((rule) => `<p>${rule}</p>`).join("")}
+    `;
+    document.querySelector("#playButton").textContent = localizationData.play;
+    document.querySelector("#nextButton").textContent = localizationData.next;
+    document.querySelector("#playAgainButton").textContent =
+      localizationData.playAgain;
+    
+
+    // Save localization data globally for game logic
+    window.localizationData = localizationData;
+  } catch (error) {
+    console.error("Error loading localization data:", error);
+  }
+}
+
+
+// Update language display
+function updateLanguageDisplay() {
+  const langButton = document.getElementById("currentLanguageButton");
+  if (currentLang == "en") {
+    langButton.textContent = "EN";
+  } else if (currentLang == "zh") {
+    langButton.textContent = "CN";
+  }
+}
+
+// Switch language
+function switchLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem("language", lang);
+  updateLanguageDisplay();
+  loadLocalizationData(lang); // Assuming a function to reload localization
+}
+
+// Initial setup
+document.addEventListener("DOMContentLoaded", () => {
+  updateLanguageDisplay();
+
+  const langOptions = document.querySelectorAll("#languageDropdown li");
+  langOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+      const selectedLang = option.dataset.lang;
+      switchLanguage(selectedLang);
+    });
+  });
+});
+
 // Scorll Animation
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -35,8 +95,8 @@ async function loadGameData() {
   return data;
 }
 
-// Generate Random Question
-function generateQuestion(data) {
+// Generate Random Question with Localization
+function generateQuestion(data, lang = "en") {
   const { voiceActors, voiceClips } = data;
 
   // Randomly pick a voice clip for the question
@@ -51,12 +111,24 @@ function generateQuestion(data) {
     .sort(() => 0.5 - Math.random())
     .slice(0, 3);
 
-  const options = [...distractors, correctActor].sort(
-    () => 0.5 - Math.random()
-  );
+  // Map options to localized names
+  const options = [...distractors, correctActor]
+    .map((actor) => ({
+      id: actor.id,
+      name: actor.name[currentLang]
+    }))
+    .sort(() => 0.5 - Math.random());
 
-  return { correctClip, correctActor, options };
+  return {
+    correctClip, // Keep the clip as it is
+    correctActor: {
+      id: correctActor.id,
+      name: correctActor.name[currentLang]
+    },
+    options,
+  };
 }
+
 
 // Render Question
 function renderQuestion(question, data, questionList, currentIndex, correct) {
@@ -66,7 +138,11 @@ function renderQuestion(question, data, questionList, currentIndex, correct) {
   const totalQuestions = questionList.length;
 
   // Update question counter
-  questionCounter.textContent = `Question ${currentIndex} / ${totalQuestions}`;
+  if (currentLang == "en") {
+    questionCounter.textContent = `Question ${currentIndex} / ${totalQuestions}`;
+  } else if (currentLang == "zh") {
+    questionCounter.textContent = `问题  ${currentIndex} / ${totalQuestions}`;
+  }
 
   // Set audio clip
   audioElement.src = `assets/${question.correctClip.file}`;
@@ -91,7 +167,11 @@ function renderQuestion(question, data, questionList, currentIndex, correct) {
       // Show the modal with the correct answer
       const modal = document.querySelector("#modal");
       const modalText = document.querySelector("#modal-text");
-      modalText.innerHTML = `The correct answer is:<br><span style="color: black; font-weight: bold;">${question.correctActor.name}</span><br><img src="assets/${question.correctActor.id}.jpg" alt="${question.correctActor.name}" style="width: 150px; height: auto; margin-top: 10px;">`;
+      if (currentLang == "en") {
+        modalText.innerHTML = `The correct answer is:<br><span style="font-weight: bold; color: #333;">${question.correctActor.name}</span><br><img src="assets/${question.correctActor.id}.jpg" alt="${question.correctActor.name}" style="width: 150px; height: auto; margin-top: 10px;">`;
+      } else if (currentLang == "zh") {
+        modalText.innerHTML = `正确答案是:<br><span style="font-weight: bold; color: #333;">${question.correctActor.name}</span><br><img src="assets/${question.correctActor.id}.jpg" alt="${question.correctActor.name}" style="width: 150px; height: auto; margin-top: 10px;">`;
+      }
       modal.classList.remove("hidden");
 
       // Set audio volume to 0
@@ -220,3 +300,5 @@ themeToggle.addEventListener("change", () => {
     localStorage.setItem("theme", "light");
   }
 });
+
+

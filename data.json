@@ -2,27 +2,27 @@
   "voiceActors": [
     {
       "id": 1,
-      "name": "Iwami Manaka"
+      "name": { "en": "Iwami Manaka", "zh": "石见舞菜香" }
     },
     {
       "id": 2,
-      "name": "Kohara Konomi"
+      "name": { "en": "Kohara Konomi", "zh": "小原好美" }
     },
     {
       "id": 3,
-      "name": "Minase Inori"
+      "name": { "en": "Minase Inori", "zh": "水濑祈" }
     },
     {
       "id": 4,
-      "name": "Onishi Saori"
+      "name": { "en": "Onishi Saori", "zh": "大西沙织" }
     },
     {
       "id": 5,
-      "name": "Youmiya Hina"
+      "name": { "en": "Youmiya Hina", "zh": "羊宫妃那" }
     },
     {
       "id": 6,
-      "name": "Taketatsu Ayana"
+      "name": { "en": "Taketatsu Ayana", "zh": "竹达彩奈" }
     }
   ],
   "voiceClips": [

@@ -109,6 +109,10 @@ section {
   display: none;
 }
 
+#modal-text {
+  color: #333;
+}
+
 
 
 /* Button States */
@@ -167,6 +171,7 @@ button:hover {
 
 #questionCounter {
   font-size: 25px;
+
   font-weight: bold;
 }
 
@@ -284,5 +289,50 @@ body.dark-mode button {
 
 body.dark-mode button:hover {
   background-color: #333;
+}
+
+/* Language Selector */
+.language-selector {
+  position: absolute;
+  top: -5px; /* Align with dark mode button */
+  right: 70px; /* Slightly to the right of the dark mode button */
+}
+
+#currentLanguageButton {
+  padding: 8px 8px;
+  border: none;
+  border-radius: 80px;
+  background-color: rgba(3,3,3,0);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#languageDropdown {
+  position: absolute;
+  top: 0; /* Slightly below the button */
+  right: 20px;
+  list-style: none;
+  padding: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 1000;
+}
+
+#languageDropdown li {
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #333;
+}
+
+#languageDropdown li:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show dropdown on hover */
+.language-selector:hover #languageDropdown {
+  display: block;
 }
 

@@ -1,0 +1,15 @@
+{
+    "welcome": "Welcome to Suzu's Voice Actor Guessing Game!",
+    "howToPlay": "How to Play:",
+    "rules": [
+      "You'll hear a voice clip from a voice actor.",
+      "Your goal is to guess the correct voice actor from four options.",
+      "You have 10 questions to answer in each game.",
+      "Challenge yourself to get a perfect score!"
+    ],
+    "play": "Play",
+    "score": "You scored {score} / {totalQuestions}!",
+    "playAgain": "Play Again",
+    "next": "Next Question"
+  }
+  
