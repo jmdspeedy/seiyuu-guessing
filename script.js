@@ -17,7 +17,6 @@ hiddenElements.forEach((element) => observer.observe(element));
 
 // Scroll to top
 document.addEventListener("DOMContentLoaded", () => {
-  document.body.classList.add("lock-scroll");
   const welcomeSection = document.querySelector("#welcome");
   if (welcomeSection) {
     window.scrollTo({
@@ -25,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       behavior: "smooth",
     });
   }
+  document.body.classList.add("lock-scroll");
 });
 
 
@@ -144,7 +144,6 @@ function renderQuestion(question, data, questionList, currentIndex, correct) {
       // Add event listener for "Play Again" button
       document.querySelector("#playAgainButton").onclick = () => {
         GOmodal.classList.add("hidden");
-        localStorage.removeItem("gameStarted"); // Reset game state
         document.body.classList.add("lock-scroll");
         document.querySelector("#game").classList.add("hidden"); // Hide game section
         initializeGame();
@@ -196,4 +195,28 @@ document.getElementById("playButton").addEventListener("click", () => {
   // Initialize the game
   initializeGame();
   document.body.classList.add("lock-scroll");
+});
+
+
+// Dark Mode Toggle
+const themeToggle = document.getElementById("themeToggle");
+
+// Check for saved theme preference
+document.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggle.checked = true;
+  }
+});
+
+// Event listener for theme switch
+themeToggle.addEventListener("change", () => {
+  if (themeToggle.checked) {
+    document.body.classList.add("dark-mode");
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.body.classList.remove("dark-mode");
+    localStorage.setItem("theme", "light");
+  }
 });
