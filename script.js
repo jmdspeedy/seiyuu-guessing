@@ -17,7 +17,6 @@ async function loadLocalizationData(lang) {
     document.querySelector("#nextButton").textContent = localizationData.next;
     document.querySelector("#playAgainButton").textContent =
       localizationData.playAgain;
-    
 
     // Save localization data globally for game logic
     window.localizationData = localizationData;
@@ -25,7 +24,6 @@ async function loadLocalizationData(lang) {
     console.error("Error loading localization data:", error);
   }
 }
-
 
 // Update language display
 function updateLanguageDisplay() {
@@ -83,10 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
       behavior: "smooth",
     });
   }
-  console.log("scroll back to top")
+  console.log("scroll back to top");
   document.body.classList.add("lock-scroll");
 });
-
 
 // Load JSON Data
 async function loadGameData() {
@@ -115,7 +112,7 @@ function generateQuestion(data, lang = "en") {
   const options = [...distractors, correctActor]
     .map((actor) => ({
       id: actor.id,
-      name: actor.name[currentLang]
+      name: actor.name[currentLang],
     }))
     .sort(() => 0.5 - Math.random());
 
@@ -123,12 +120,11 @@ function generateQuestion(data, lang = "en") {
     correctClip, // Keep the clip as it is
     correctActor: {
       id: correctActor.id,
-      name: correctActor.name[currentLang]
+      name: correctActor.name[currentLang],
     },
     options,
   };
 }
-
 
 // Render Question
 function renderQuestion(question, data, questionList, currentIndex, correct) {
@@ -247,10 +243,13 @@ async function initializeGame() {
         dup = true;
       }
     });
+
+    // Only add to question list if not duplicate
     if (dup == true) {
-      console.log("dup ques");
+      i -= 1;
+    } else {
+      questionList.push(question);
     }
-    questionList.push(question);
   }
 
   renderQuestion(questionList[0], data, questionList, 1, 0);
@@ -277,7 +276,6 @@ document.getElementById("playButton").addEventListener("click", () => {
   document.body.classList.add("lock-scroll");
 });
 
-
 // Dark Mode Toggle
 const themeToggle = document.getElementById("themeToggle");
 
@@ -300,5 +298,3 @@ themeToggle.addEventListener("change", () => {
     localStorage.setItem("theme", "light");
   }
 });
-
-

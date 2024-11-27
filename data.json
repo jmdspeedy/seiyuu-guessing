@@ -48,6 +48,13 @@
         "en": "Tono Hikaru",
         "zh": "远野光"
       }
+    },
+    {
+      "id": 8,
+      "name": {
+        "en": "Uchida Maaya",
+        "zh": "内田真礼"
+      }
     }
   ],
   "voiceClips": [
@@ -90,6 +97,16 @@
       "id": 8,
       "file": "tono_hikaru_1.mp3",
       "actorId": 7
+    },
+    {
+      "id": 9,
+      "file": "tono_hikaru_2.mp3",
+      "actorId": 7
+    },
+    {
+      "id": 10,
+      "file": "uchida_maaya_1.mp3",
+      "actorId": 8
     }
   ]
 }
