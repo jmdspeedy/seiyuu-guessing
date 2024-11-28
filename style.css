@@ -336,3 +336,30 @@ body.dark-mode button:hover {
   display: block;
 }
 
+/* Media Query for Small Devices */
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .options {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+
+  #darkModeToggle,
+  #languageSelector {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .rules {
+    font-size: 0.8em;
+    padding: 15px;
+  }
+}
